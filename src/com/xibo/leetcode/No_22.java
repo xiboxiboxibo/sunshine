@@ -18,9 +18,9 @@ import java.util.List;
  */
 public class No_22 {
 
-    public List<String> generateParenthesis(int n) {
-        List<String> res = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-    }
+//    public List<String> generateParenthesis(int n) {
+//        List<String> res = new ArrayList<>();
+//        StringBuilder sb = new StringBuilder();
+//    }
 
 }

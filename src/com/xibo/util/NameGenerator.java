@@ -1,5 +1,7 @@
 package com.xibo.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -16,8 +18,8 @@ public final class NameGenerator {
      * 基本汉字Unicode编码范围是4E00-9FA5
      */
     private static int cUnicodeStart = 0x4E00; // 头
-    private static int cUnicodeRangeEnd = 0x9FA5; // 尾
-    private static int cUnicodeRange = cUnicodeRangeEnd - cUnicodeStart + 1; //范围 用于随机
+    private static int cUnicodeEnd = 0x9FA5; // 尾
+    private static int cUnicodeRange = cUnicodeEnd - cUnicodeStart + 1; //范围 用于随机
 
     /**
      * 百家姓
@@ -53,18 +55,29 @@ public final class NameGenerator {
             "东门 西门 商 牟 佘 佴 伯 赏 南宫 墨 哈 谯 笪 年 爱 阳 佟 " +
             "第五 言 福").split(" ");
 
-    private static ThreadLocalRandom random = ThreadLocalRandom.current();
-
     /**
-     * 随机生成一个名字
+     * 生成一个名字
      */
     public static String generateName() {
+        ThreadLocalRandom random = ThreadLocalRandom.current();
         StringBuilder sb = new StringBuilder(surnames[random.nextInt(surnames.length)]); // 姓氏
         sb.append((char)(cUnicodeStart + random.nextInt(cUnicodeRange))); // 名 第一个字
         if (random.nextBoolean()) { // 名 第二个字 50%概率
             sb.append((char)(cUnicodeStart + random.nextInt(cUnicodeRange)));
         }
         return sb.toString();
+    }
+
+    /**
+     * 批量生成名字
+     * @param num 数量
+     */
+    public static List<String> generateName(int num) {
+        List<String> result = new ArrayList<>(num);
+        for (int i = 0; i < num; i++) {
+            result.add(generateName());
+        }
+        return result;
     }
 
 }
