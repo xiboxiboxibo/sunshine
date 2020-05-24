@@ -1,6 +1,9 @@
 package com.xibo.zzm;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * JavaClass执行工具
@@ -18,16 +21,21 @@ public class JavaClassExecuter {
     public static String execute(byte[] classByte) {
         HackSystem.clearBuffer();
         ClassModifier cm = new ClassModifier(classByte);
-        byte[] modiBytes = cm.modifyUTF8Constant("/java/lang/System", "com/xibo/zzm/HackSystem");
+        byte[] modiBytes = cm.modifyUTF8Constant("java/lang/System", "com/xibo/zzm/HackSystem");
         HostSwapClassLoader loader = new HostSwapClassLoader();
         Class clazz = loader.loadByte(modiBytes);
         try {
             Method method = clazz.getMethod("main", new Class[] {String[].class});
             method.invoke(null, new String[] {null});
+            write(modiBytes);
         } catch (Throwable e) {
             e.printStackTrace(HackSystem.out);
         }
         return HackSystem.getBufferString();
+    }
+
+    private static void write(byte[] bytes) throws IOException {
+        Files.write(Path.of("/Users/xibo/MyWorld/sunshine/x.class"), bytes);
     }
 
 }
