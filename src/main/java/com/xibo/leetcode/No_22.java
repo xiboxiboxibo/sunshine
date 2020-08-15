@@ -1,8 +1,5 @@
 package com.xibo.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 题目：括号生成
  *

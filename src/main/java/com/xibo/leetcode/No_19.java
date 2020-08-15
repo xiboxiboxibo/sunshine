@@ -2,7 +2,6 @@ package com.xibo.leetcode;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 题目：删除链表的倒数第N个节点

@@ -3,7 +3,7 @@ package com.xibo.zzm;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * JavaClass执行工具
@@ -35,7 +35,7 @@ public class JavaClassExecuter {
     }
 
     private static void write(byte[] bytes) throws IOException {
-        Files.write(Path.of("/Users/xibo/MyWorld/sunshine/x.class"), bytes);
+        Files.write(Paths.get("/Users/xibo/MyWorld/sunshine/x.class"), bytes);
     }
 
 }
