@@ -3,7 +3,6 @@ package com.xibo.zzm;
 import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
-import java.nio.ByteBuffer;
 
 /**
  * VM Args: -Xmx20M -XX:MaxDirectMemorySize=10M
@@ -19,7 +18,7 @@ public class DirectMemoryOOM {
         Unsafe unsafe = (Unsafe) unsafeField.get(null);
         while (true) {
             unsafe.allocateMemory(_1MB);
-//            ByteBuffer.allocateDirect(_1MB);上村花论坛看小姐姐
+//            ByteBuffer.allocateDirect(_1MB);
         }
     }
 
